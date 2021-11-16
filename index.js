@@ -53,7 +53,7 @@ client.on("message", (message) => {
     if (command === "ping") {
     message.reply(`Pong ! Ping de 1ms ! T'as la fibre ?`);
     }
-    
+
     if (command === "421") {
         message.reply('En construction')
     }
@@ -73,7 +73,9 @@ client.on("message", (message) => {
     }
     if (command === "randomChose") {
     }
-
+    if(message.content == "ça va mon reuf ?") {
+      message.reply("on est la mon reuf");
+    }
     if (command === 'clear' || command === 'c') {
         if (!message.member.hasPermission('MANAGE_MESSAGES')) {
           return message.channel
