@@ -73,8 +73,9 @@ client.on("message", (message) => {
     }
     if (command === "randomChose") {
     }
-    if(message.content == "ça va mon reuf ?") {
-      message.reply("on est la mon reuf");
+
+    if(message.content === "ça va mon reuf ?") {
+      message.channel.send("on est la mon reuf");
     }
     if (command === 'clear' || command === 'c') {
         if (!message.member.hasPermission('MANAGE_MESSAGES')) {
