@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "discord-music-player": "^7.1.4",
+    "discord.js": "^12.5.3",
+    "opusscript": "^0.0.8"
+  }
+}
