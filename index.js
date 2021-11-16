@@ -7,9 +7,7 @@ const settings = {
 };
 
 client.login(config.BOT_TOKEN)
-client.on('shardError', error => {
-	console.error('A websocket connection encountered an error:', error);
-});
+
 const { Player } = require("discord-music-player");
 const player = new Player(client, {
 });
@@ -27,8 +25,18 @@ client.on('message', async (message) => {
             search: args.join(' '),
             requestedBy: message.author.tag
         });
-        message.channel.send(`**${song.name}** est joué, demandé par @${song.requestedBy}`);
-
+        if(message.author['username'] === 'Sayn') {
+          message.channel.send(`**${song.name}** est joué, demandé par ce beau gosse de ${message.author}`);
+        }
+        else if (message.author['username'] === 'EnygmatiK') {
+          message.channel.send(`**${song.name}** est joué, demandé par ce clébard d' ${message.author}`);
+        }
+        else if (message.author['username'] === 'JoKe') {
+          message.channel.send(`**${song.name}** est joué, demandé par ${message.author} (qui se fait exploser sur littéralement tous les jeux par Sayn & Eny btw)`);
+        }
+        else {
+          message.channel.send(`**${song.name}** est joué, demandé par ' ${message.author}`);
+        }
         if(song)
             console.log(`Started playing ${song.name}`);
         return;
@@ -39,15 +47,13 @@ client.on('message', async (message) => {
 client.on("message", (message) => {
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
-  
+
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     if (command === "ping") {
     message.reply(`Pong ! Ping de 1ms ! T'as la fibre ?`);
     }
-    if (command === "spam") {
-
-    }
+    
     if (command === "421") {
         message.reply('En construction')
     }
@@ -63,11 +69,11 @@ client.on("message", (message) => {
         message.reply(double)
     }
     if (command === "help") {
-        message.reply('**Double** : Doubler ta valeur **Ping** : Latence **Roll** : Tirage au sort avec pour arguement max ta valeur définie **Clear** : Supprime les messages (modérateur) **Play** : Joue une musique YouTube  / Spotify');
+        message.channel.send('**Double** : *Doubler ta valeur* \n**Ping** : *Latence actuelle* \n**Roll** : *Lancer de dé entre 1 et le nombre que tu définis comme argument*\n**Clear** : *Supprime les messages (admin perms needed)*\n**Play** : *Joue une musique YouTube  / Spotify*');
     }
     if (command === "randomChose") {
     }
-    
+
     if (command === 'clear' || command === 'c') {
         if (!message.member.hasPermission('MANAGE_MESSAGES')) {
           return message.channel
@@ -94,11 +100,11 @@ client.on("message", (message) => {
               }, 2500);
             });
         }
-    
+
         const amount = Number(args) > 100
           ? 101
           : Number(args);
-    
+
         message.channel.bulkDelete(amount +1 , true)
         .then((_message) => {
           message.channel
