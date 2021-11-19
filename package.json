@@ -2,6 +2,7 @@
   "dependencies": {
     "discord-music-player": "^7.1.4",
     "discord.js": "^12.5.3",
+    "edit-json-file": "^1.6.2",
     "opusscript": "^0.0.8"
   }
 }
